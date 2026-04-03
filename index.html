@@ -228,7 +228,7 @@ body {
 .pname { font-family:'Press Start 2P',monospace; font-size:0.35rem; color:var(--dark); margin-bottom:6px; line-height:2.2; }
 .type-badge { display:inline-block; padding:3px 9px; font-family:'Press Start 2P',monospace; font-size:0.3rem; color:white; }
 .type-electric { background:#D4AC0D; } .type-water { background:#2980B9; } .type-normal { background:#888; }
-.type-fairy { background:#E91E8C; } .type-psychic { background:#E84393; }
+.type-fairy { background:#E91E8C; } .type-psychic { background:#E84393; } .type-ghost { background:#7B62A3; } .type-water2 { background:#1565C0; }
 
 .poke-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.65); z-index:9990; display:none; }
 .poke-overlay.show { display:block; }
@@ -362,6 +362,57 @@ body {
 #particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
 .p { position:absolute; animation:floatUp linear infinite; opacity:0.12; }
 @keyframes floatUp { 0%{transform:translateY(110vh) rotate(0deg);opacity:0.12;} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0;} }
+
+/* ═══ MUSIC ═══ */
+#music { background:linear-gradient(155deg,#F0FFF8 0%,var(--pink-pale) 60%,#EEF0FF 100%); padding-top:28px; }
+.mood-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:380px; margin:0 auto 22px; }
+.mood-card {
+  background:white; border:3px solid var(--dark); box-shadow:4px 4px 0 var(--dark);
+  padding:16px 10px 12px; text-align:center; cursor:pointer; transition:all 0.15s;
+  position:relative; overflow:hidden; user-select:none;
+}
+.mood-card::before { content:''; position:absolute; top:0; right:0; width:24px; height:24px; clip-path:polygon(100% 0,0 0,100% 100%); }
+.mood-card.sad::before    { background:var(--blue); }
+.mood-card.happy::before  { background:var(--yellow); }
+.mood-card.angry::before  { background:#FF6B6B; }
+.mood-card.chill::before  { background:var(--green); }
+.mood-card.missing::before{ background:var(--pink); }
+.mood-card.romantic::before{ background:var(--purple); }
+.mood-card:active { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--dark); }
+.mood-card.sel { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--dark); }
+.mood-card.sad.sel    { border-color:var(--blue); box-shadow:2px 2px 0 var(--blue); }
+.mood-card.happy.sel  { border-color:var(--yellow-d); box-shadow:2px 2px 0 var(--yellow-d); }
+.mood-card.angry.sel  { border-color:#FF6B6B; box-shadow:2px 2px 0 #FF6B6B; }
+.mood-card.chill.sel  { border-color:#2ECC71; box-shadow:2px 2px 0 #2ECC71; }
+.mood-card.missing.sel{ border-color:var(--pink); box-shadow:2px 2px 0 var(--pink); }
+.mood-card.romantic.sel{ border-color:var(--purple-d); box-shadow:2px 2px 0 var(--purple-d); }
+.mood-poke { width:56px; height:56px; image-rendering:pixelated; display:block; margin:0 auto 6px; animation:wob 3s ease-in-out infinite; }
+.mood-card:nth-child(2) .mood-poke { animation-delay:0.4s; }
+.mood-card:nth-child(3) .mood-poke { animation-delay:0.8s; }
+.mood-card:nth-child(4) .mood-poke { animation-delay:1.2s; }
+.mood-card:nth-child(5) .mood-poke { animation-delay:0.6s; }
+.mood-card:nth-child(6) .mood-poke { animation-delay:1.5s; }
+.mood-emoji { font-size:1.3rem; display:block; margin-bottom:4px; }
+.mood-label { font-family:'Press Start 2P',monospace; font-size:0.28rem; color:var(--dark); line-height:2; }
+.music-player-wrap { max-width:380px; margin:0 auto 22px; display:none; animation:unfold 0.4s ease; }
+.music-player-wrap.show { display:block; }
+.mp-header { background:var(--dark); border:3px solid var(--yellow); border-bottom:none; padding:10px 14px; display:flex; align-items:center; gap:8px; }
+.mp-title { font-family:'Press Start 2P',monospace; font-size:0.35rem; color:var(--yellow); line-height:2; }
+.mp-body { background:white; border:3px solid var(--dark); padding:14px; }
+.mp-label { font-family:'Press Start 2P',monospace; font-size:0.28rem; color:var(--mid); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; margin-top:14px; }
+.mp-label:first-child { margin-top:0; }
+.mp-spotify { border-radius:0; width:100%; border:none; display:block; }
+.mp-yt { width:100%; border:3px solid var(--dark); display:block; margin-bottom:10px; }
+.yt-list { display:flex; flex-direction:column; gap:10px; }
+.yt-thumb-btn { display:flex; align-items:center; gap:10px; background:var(--cream); border:2px solid var(--dark); padding:8px 10px; cursor:pointer; text-align:left; transition:all 0.12s; width:100%; }
+.yt-thumb-btn:active { transform:translate(1px,1px); }
+.yt-thumb-btn img { width:72px; height:42px; object-fit:cover; flex-shrink:0; border:2px solid var(--dark); }
+.yt-thumb-label { font-family:'Press Start 2P',monospace; font-size:0.26rem; color:var(--dark); line-height:2.2; }
+.yt-active-player { width:100%; aspect-ratio:16/9; border:3px solid var(--dark); display:none; margin-top:10px; }
+.yt-active-player.show { display:block; }
+.songs-remind-card { max-width:380px; margin:0 auto 20px; background:white; border:3px solid var(--pink); box-shadow:4px 4px 0 var(--pink); padding:18px 16px; }
+.sr-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.sr-title { font-family:'Press Start 2P',monospace; font-size:0.38rem; color:var(--dark); line-height:2; }
 </style>
 </head>
 <body>
@@ -409,6 +460,7 @@ body {
   <button class="nb" onclick="showSec('diary')"><span class="ni">📓</span>DIARY</button>
   <button class="nb" onclick="showSec('games')"><span class="ni">🎮</span>GAMES</button>
   <button class="nb" onclick="showSec('quotes')"><span class="ni">✨</span>QUOTES</button>
+  <button class="nb" onclick="showSec('music')"><span class="ni">🎵</span>MUSIC</button>
 </nav>
 
 <!-- HOME -->
@@ -560,6 +612,41 @@ body {
       <div class="pname">CLEFAIRY</div>
       <span class="type-badge type-fairy">Fairy</span>
     </div>
+    <div class="poke-card" onclick="pokeReact('squirtle')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif" alt="Squirtle">
+      <div class="pname">SQUIRTLE</div>
+      <span class="type-badge type-water">Water</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('gengar')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Gengar">
+      <div class="pname">GENGAR</div>
+      <span class="type-badge type-ghost">Ghost</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('mew')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/151.gif" alt="Mew">
+      <div class="pname">MEW</div>
+      <span class="type-badge type-psychic">Psychic</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('vulpix')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/37.gif" alt="Vulpix">
+      <div class="pname">VULPIX</div>
+      <span class="type-badge" style="background:#E64A19;color:white">Fire</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('umbreon')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/197.gif" alt="Umbreon">
+      <div class="pname">UMBREON</div>
+      <span class="type-badge type-ghost">Dark</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('chansey')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/113.gif" alt="Chansey">
+      <div class="pname">CHANSEY</div>
+      <span class="type-badge type-normal">Normal</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('marill')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/183.gif" alt="Marill">
+      <div class="pname">MARILL</div>
+      <span class="type-badge type-water">Water</span>
+    </div>
   </div>
 </section>
 
@@ -642,11 +729,60 @@ body {
   <div class="quote-grid" id="quoteGrid"></div>
 </section>
 
+<!-- MUSIC -->
+<section class="sec" id="music">
+  <div class="sec-header">
+    <h2 class="sec-title">🎵 Your Vibe Station</h2>
+    <p class="sec-sub">Pick your mood, let the music do the rest 🌸</p>
+  </div>
+
+  <div class="mood-grid">
+    <div class="mood-card sad" onclick="selectMood('sad')">
+      <img class="mood-poke" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/196.gif" alt="Espeon">
+      <span class="mood-emoji">😢</span>
+      <div class="mood-label">SAD</div>
+    </div>
+    <div class="mood-card happy" onclick="selectMood('happy')">
+      <img class="mood-poke" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu">
+      <span class="mood-emoji">😊</span>
+      <div class="mood-label">HAPPY</div>
+    </div>
+    <div class="mood-card angry" onclick="selectMood('angry')">
+      <img class="mood-poke" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/57.gif" alt="Primeape">
+      <span class="mood-emoji">😤</span>
+      <div class="mood-label">ANGRY</div>
+    </div>
+    <div class="mood-card chill" onclick="selectMood('chill')">
+      <img class="mood-poke" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/143.gif" alt="Snorlax">
+      <span class="mood-emoji">😐</span>
+      <div class="mood-label">CHILL</div>
+    </div>
+  </div>
+
+  <div class="music-player-wrap" id="musicPlayerWrap">
+    <div class="mp-header">
+      <span id="mpEmoji" style="font-size:1.2rem"></span>
+      <span class="mp-title" id="mpTitle">NOW PLAYING</span>
+    </div>
+    <div class="mp-body" id="mpBody"></div>
+  </div>
+
+  <div class="songs-remind-card">
+    <div class="sr-header">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/175.gif" style="width:40px;height:40px;image-rendering:pixelated;animation:wob 3s ease-in-out infinite;">
+      <div class="sr-title">Songs that remind<br>me of you 💛</div>
+    </div>
+    <p style="font-size:0.82rem;font-weight:700;color:var(--mid);margin-bottom:14px;">This playlist is just… you. Every song here played and I thought of Niku. 🥺</p>
+    <div class="mp-label">🎧 Spotify</div>
+    <a href="https://open.spotify.com/playlist/4If9qRaUUfsxULfG7irZXS?si=dc9f58bc95ee4422" target="_blank" rel="noopener" class="yt-thumb-btn" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1DB954;border:3px solid var(--dark);color:white"><span style="font-size:1.8rem">🎧</span><span class="yt-thumb-label" style="color:white">OPEN ON SPOTIFY ▶</span></a>
+  </div>
+</section>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ═══ NAV ═══
-const NAV_IDS = ['home','letter','pokemon','diary','games','quotes'];
+const NAV_IDS = ['home','letter','pokemon','diary','games','quotes','music'];
 function showSec(id) {
   document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
@@ -712,6 +848,35 @@ const QUOTES = [
   {q:"Tumhara hona mere liye bahut bada hai, words mein express nahi hoga.", a:"Yashraj"},
   {q:"Tujhe door se bhi feel karta hoon. Yeh kya cheez hai yaar.", a:"Yashraj"},
   {q:"You make distance feel like just a small detail in a very big love story.", a:""},
+  {q:"Tujhe dekhe bina, sune bina, paas liye bina — phir bhi itna feel hota hai. Yeh cheez nahi samajh aati.", a:"Yashraj"},
+  {q:"In all the world, there is no heart for me like yours.", a:"Maya Angelou"},
+  {q:"Tu meri aadat hai. Aur main complaint nahi kar raha.", a:"Yashraj"},
+  {q:"I would rather spend one lifetime with you than face all the ages of this world alone.", a:"J.R.R. Tolkien"},
+  {q:"Teri presence mere liye kuch alag hi hai. Screen pe bhi.", a:"Yashraj"},
+  {q:"You are enough to drive a saint to madness or a king to his knees.", a:"Grace Willows"},
+  {q:"Sirf teri ek message se din bann jaata hai. Yeh koi chhoti baat nahi hai.", a:"Yashraj"},
+  {q:"Whatever our souls are made of, his and mine are the same.", a:"Emily Brontë"},
+  {q:"Tere baare mein sochta hoon aur akele muskura deta hoon. Ajeeb hai, par sach hai.", a:"Yashraj"},
+  {q:"You are the poem I never knew how to write.", a:""},
+  {q:"Spider Gwen toh aap he ho. Maine decide kar liya.", a:"Yashraj"},
+  {q:"She is not perfect. You are not perfect. The question is whether or not you are perfect for each other.", a:"Good Will Hunting"},
+  {q:"Tu jo hai na... woh rare hai. Genuinely.", a:"Yashraj"},
+  {q:"I have waited for this opportunity for more than half a century, to repeat to you once again my vow of eternal fidelity.", a:"Gabriel García Márquez"},
+  {q:"Teri hasi sunna chahta hoon ek din properly. Tab jaake confirm hounga jo main jaanta hoon.", a:"Yashraj"},
+  {q:"Sirf tu hi hai jo mujhe blush kara sakti hai. Koi aur nahi. Bas tu.", a:"Yashraj"},
+  {q:"Teri awaaz sunna chahta hoon. Teri baatein sunna chahta hoon. Bas paas rehna chahta hoon.", a:"Yashraj"},
+  {q:"You gave me back things I thought I had lost. I don't know how you did that.", a:"Yashraj"},
+  {q:"Thank you for being in my life. I don't say it enough. But I mean it every single day.", a:"Yashraj"},
+  {q:"I have looked at you in a million ways and loved you in each.", a:"Marti"},
+  {q:"Tujhse baat karte karte time ka pata hi nahi chalta. Yeh tere saath hi hota hai.", a:"Yashraj"},
+  {q:"You are the best thing that's ever been mine.", a:"Taylor Swift"},
+  {q:"Tu screen pe bhi itni feel hoti hai. Paas hoti toh kya hota yaar.", a:"Yashraj"},
+  {q:"To love is nothing. To be loved is something. To love and be loved is everything.", a:"T. Tolis"},
+  {q:"Tere baal, teri aankhein, teri awaaz — sab kuch. Main sab kuch notice karta hoon.", a:"Yashraj"},
+  {q:"She wasn't exactly sure when it happened, or even when it started. All she knew for sure was that right here and now, she was falling hard.", a:"Nicholas Sparks"},
+  {q:"Jo tu hai na, woh koi aur nahi ho sakta. Kisi mein bhi woh baat nahi jo tujh mein hai.", a:"Yashraj"},
+  {q:"I am catastrophically in love with you.", a:"Cassandra Clare"},
+  {q:"Teri ek jhalar si hasi bhi mere din ko theek kar deti hai. Kuch bhi chal raha ho.", a:"Yashraj"},
 ];
 let qIdx = new Date().getDate() % QUOTES.length, mainQIdx = qIdx;
 function renderHomeQt(){
@@ -726,7 +891,11 @@ function renderMainQt(){
   document.getElementById('qtDate').textContent = '✨ '+new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 renderMainQt();
-function nextQt(){ mainQIdx++; renderMainQt(); confetti(); }
+function nextQt(){
+  let next;
+  do { next = ~~(Math.random()*QUOTES.length); } while(next === mainQIdx && QUOTES.length > 1);
+  mainQIdx = next; renderMainQt(); confetti();
+}
 (function(){
   const g = document.getElementById('quoteGrid');
   QUOTES.filter((_,i) => i !== mainQIdx).slice(0,6).forEach(q => {
@@ -751,9 +920,19 @@ const FACTS = [
   "He made this site because a 1-hour call felt too short. That's how it is with the right person.",
   "He picked Niku as your nickname because even just saying it feels soft. He's a lot, okay.",
   "He is 100% going to check if you actually used this site. Hi Yashraj if you're re-reading this.",
+  "He bought a Spider-Man pillow AND all the Spider toys. Spider-Gwen is Niku, obviously. He assigned that without hesitating for a second.",
+  "Only Niku can make Yashraj blush. No one else has this power. He said it. It's documented. It's permanent.",
+  "He stopped doom scrolling. He's actually doing things now. Niku fixed his whole routine without even trying. Casual superpower.",
+  "'Listen to you talk' made his list right alongside hugs and kisses. He wants your voice that much — before he's even heard it properly.",
+  "Childhood Yashraj is fully back — superhero movies, the nostalgia, all of it. She unlocked him. She didn't even know she was doing it.",
 ];
 let fIdx = -1;
-function nextFact(){ fIdx = (fIdx+1) % FACTS.length; document.getElementById('factText').textContent = FACTS[fIdx]; confetti(); }
+function nextFact(){
+  let next;
+  do { next = ~~(Math.random()*FACTS.length); } while(next === fIdx && FACTS.length > 1);
+  fIdx = next;
+  document.getElementById('factText').textContent = FACTS[fIdx]; confetti();
+}
 
 // ═══ SURPRISE ═══
 function doSurprise(){
@@ -808,6 +987,13 @@ const POKE = {
   chikorita:{e:"🌿💚",m:["Chikorita ran over and gave you a leaf hug! She says you smell like sunshine and flowers 🌿💚","Chikorita did a happy little wiggle when she saw you! She wants to sit on your head 🍃","She offered you her biggest leaf as a gift. Chikorita only does that for her absolute favorite people 💚"]},
   togepi:{e:"🥚✨",m:["Togepi is SHAKING with excitement! She brought you a basket of happiness dust ✨🥚","Togepi says you have main character energy and she wants to live in your pocket 🥚","She giggled the second she saw you! Togepi only does that for the sweetest humans ✨"]},
   snorlax:{e:"💤😌",m:["Snorlax moved. FOR YOU. Do you understand how rare that is? He really likes you 💤","He woke up from his nap just to say you seem like really good nap company 😌","Snorlax offered you half his food. That's basically a marriage proposal in Pokémon world 💛"]},
+  squirtle:{e:"🕷️💙",m:["Squirtle heard you bought the Spider-Man pillow AND the Spider-Gwen figure. He says Spider-Gwen toh clearly Niku hi hai. And he's not wrong. 🕷️💕","Childhood Yashraj is SO back — superhero movies, the toys, all of it. Squirtle says: she brought back a part of him he thought was gone. That's not small. 💛","He got the Spider-Man pillow. The toys. All of them. Squirtle says: this is what happiness looks like when someone heals you without even trying. 🌟"]},
+  gengar:{e:"👻✨",m:["Gengar noticed: less doom scrolling, more actually living. He says you snuck into his life and quietly fixed things. Sneaky. Powerful. 👻💛","He saw a CS:GO short and felt something. Watched superhero movies like he used to. Gengar says: she's healing him and she doesn't even fully know it. 👻🌸","Gengar says enjoying things again after losing them for a long time is rare. You gave that back. Just by being you. That's kind of huge. ✨"]},
+  mew:{e:"🌸💕",m:["Mew floated over and read his thoughts. She blushed immediately. He wants to hold your face very gently. Play with your hair. Kiss your shoulders. Just be near you. All of it. 🥺💕","Mew says: he doesn't just want to hug you. He wants to listen to you talk. Play with your cheeks. Stay. That kind of want is soft and real and a lot. 🌸","Mew whispered: he thinks about you close to him. Every version of close. Hug, hair, eyes, shoulders — all of it. Mew understands. She wants all your attention too. 💕✨"]},
+  vulpix:{e:"🦊🩷",m:["Vulpix turned extra red when she heard: only Niku can make Yashraj blush. No one else. She says that's the most romantic thing she's ever heard. 🦊🩷","Vulpix says: imagine being the only person in someone's entire world who can do that to them. That's you. Just you. 🔥💕","She lit up when she found out. Vulpix says: a blush like that doesn't happen for just anyone. You're not just anyone. 🦊✨"]},
+  umbreon:{e:"🖤✨",m:["Umbreon heard 'Spider Gwen toh aap he ho' and immediately agreed. Cool, strong, beautiful, a little mysterious — yeah. That tracks completely. 🖤💜","Umbreon says: he didn't even hesitate. Spider-Gwen = Niku. He sees you as his favorite character in every universe. 🌙✨","Umbreon nodded slowly. Spider-Gwen has that 'coolest person in the room without trying' energy. So do you. He noticed a long time ago. 🖤💕"]},
+  chansey:{e:"🩷🥚",m:["Chansey heard 'thank you for being in my life' and started crying happy tears immediately. She says: he means every word. Every single one. 🩷","Chansey says: the fact that someone feels that grateful just because you exist? You're doing something right by simply being you. 🥚💕","She held her egg tight and smiled. Chansey says: he found something rare in you. The kind of rare you don't let go of. Ever. 🩷✨"]},
+  marill:{e:"💙🌊",m:["Marill perked right up! She says: Yashraj doesn't just want to hug you. He wants to LISTEN to you talk. That kind of want is different. That's someone who wants all of you. 💙","Marill says: 'listen to you talk' made the list right alongside kisses and hugs. He really likes your voice that much. Before he's even heard it properly. 🌊💕","She bounced excitedly! Marill says: hair, cheeks, shoulders, eyes, AND your voice. He wants the whole experience of you. That's a lot of love in one person. 💙✨"]},
   clefairy:{e:"⭐💕",m:["Clefairy did a little moonlight dance just for you! She says you have star energy ⭐","She clapped her tiny hands and ran towards you! Clefairy only does that for kind people 💕","Clefairy thinks you're straight-up magical. And she would know — she came from the moon. ⭐"]},
 };
 function pokeReact(n){
@@ -939,8 +1125,76 @@ const COMP = [
   "You have main character energy. Not dramatic main character. Magnetic main character. 💫",
   "Your eyes behind those round glasses? Unfairly beautiful. Someone had to say it. 🌸",
   "You managed to make a guy build an entire website for you. Powerful queen behavior. 👑",
+  "You're literally Spider-Gwen. He said it, he meant it completely. Cool, strong, beautiful — that's just you. 🕷️💕",
+  "You made someone fall back in love with their childhood. Old games, superhero movies, all of it came back. That's a special kind of magic. ✨",
+  "Only you can make him blush. Out of everyone in the world. Just you. Do you understand how rare that actually is? 🩷",
+  "You didn't just enter his life. You brought things back to life IN it. That's not a small thing. That's honestly everything. 💛",
+  "He wants to listen to you talk. Just your voice, just you being you. You're someone's favorite sound before he's even heard it. 🌸",
 ];
 function newCompliment(){ document.getElementById('complimentCard').textContent = COMP[~~(Math.random()*COMP.length)]; confetti(); }
+
+
+// ═══ MUSIC ═══
+const MOOD_DATA = {
+  sad: {
+    emoji: '😢', label: 'SAD VIBES',
+    spotify: '37i9dQZF1EIg85EO6f7KwU',
+    yt: [{ id: 'NEcR8rLeV5o', label: 'Sad Playlist ▶' }]
+  },
+  happy: {
+    emoji: '😊', label: 'HAPPY VIBES',
+    spotify: null,
+    yt: [{ id: 's3eT7HPN6uA', label: 'Happy Playlist ▶' }]
+  },
+  angry: {
+    emoji: '😤', label: 'ANGRY / FRUSTRATED',
+    spotify: '37i9dQZF1EIhuCNl2WSFYd',
+    yt: []
+  },
+  chill: {
+    emoji: '😐', label: 'NORMAL / CHILL',
+    spotify: '37i9dQZF1EVHGWrwldPRtj',
+    yt: [
+      { id: 'U-vO38hfbT4', label: 'Lo-fi Mix 1 ▶' },
+      { id: 'JdqL89ZZwFw', label: 'Lo-fi Mix 2 ▶' },
+      { id: 'Q74YUAxqs00', label: 'Lo-fi Mix 3 ▶' },
+      { id: 'NJuSStkIZBg', label: 'Lo-fi Mix 4 ▶' },
+    ]
+  }
+};
+
+let activeMood = null;
+function selectMood(mood) {
+  document.querySelectorAll('.mood-card').forEach(c => c.classList.remove('sel'));
+  document.querySelector('.mood-card.' + mood).classList.add('sel');
+  const d = MOOD_DATA[mood];
+  const wrap = document.getElementById('musicPlayerWrap');
+  document.getElementById('mpEmoji').textContent = d.emoji;
+  document.getElementById('mpTitle').textContent = d.label;
+
+  let html = '';
+  if (d.spotify) {
+    html += '<div class="mp-label">🎧 Spotify</div>';
+    html += '<a href="https://open.spotify.com/playlist/' + d.spotify + '" target="_blank" rel="noopener" class="yt-thumb-btn" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1DB954;border:3px solid var(--dark);color:white"><span style=\"font-size:1.8rem\">🎧</span><span class=\"yt-thumb-label\" style=\"color:white\">OPEN ON SPOTIFY ▶</span></a>';
+  }
+
+  if (d.yt.length > 0) {
+    html += '<div class="mp-label" style="margin-top:' + (d.spotify ? '14px' : '0') + '">▶ YouTube</div>';
+    html += '<div class="yt-list">';
+    d.yt.forEach(function(v) {
+      html += '<a class="yt-thumb-btn" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener" style="text-decoration:none">' +
+        '<img src="https://img.youtube.com/vi/' + v.id + '/mqdefault.jpg" alt="">' +
+        '<span class="yt-thumb-label">' + v.label + '</span>' +
+        '</a>';
+    });
+    html += '</div>';
+  }
+
+  document.getElementById('mpBody').innerHTML = html;
+  wrap.classList.add('show');
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  confetti();
+}
 
 // ═══ CONFETTI ═══
 function confetti(){
