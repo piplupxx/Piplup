@@ -413,6 +413,39 @@ body {
 .songs-remind-card { max-width:380px; margin:0 auto 20px; background:white; border:3px solid var(--pink); box-shadow:4px 4px 0 var(--pink); padding:18px 16px; }
 .sr-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
 .sr-title { font-family:'Press Start 2P',monospace; font-size:0.38rem; color:var(--dark); line-height:2; }
+
+/* ═══ DATE SPINNER ═══ */
+.date-cat-btn {
+  background:var(--cream); border:3px solid var(--dark); padding:8px 14px;
+  font-family:'Press Start 2P',monospace; font-size:0.28rem; cursor:pointer;
+  transition:all 0.12s; color:var(--dark); box-shadow:3px 3px 0 var(--dark);
+}
+.date-cat-btn:active { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--dark); }
+.date-cat-btn.active { background:var(--pink); color:white; border-color:var(--dark); }
+.date-spin-card {
+  background:white; border:3px solid var(--pink); border-left:6px solid var(--pink);
+  box-shadow:4px 4px 0 var(--pink); padding:20px 18px; margin:0 auto 16px;
+  font-size:0.9rem; font-weight:800; color:var(--dark); line-height:1.7;
+  min-height:90px; display:flex; align-items:center; text-align:center;
+  justify-content:center; animation:none; max-width:380px;
+}
+.date-spin-card.spinning { animation:spinPop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes spinPop { 0%{transform:scale(0.85);opacity:0.4;} 100%{transform:scale(1);opacity:1;} }
+
+/* ═══ REASONS ═══ */
+.reasons-header { background:white; border-bottom:3px solid var(--purple); position:sticky; top:0; z-index:10; }
+.reasons-scroll { padding:12px 16px 40px; display:flex; flex-direction:column; gap:0; }
+.reason-item { display:flex; gap:12px; align-items:flex-start; padding:16px 0; border-bottom:1px solid rgba(177,151,252,0.2); }
+.reason-item:last-of-type { border-bottom:none; }
+.reason-num { font-family:'Press Start 2P',monospace; font-size:0.3rem; color:var(--purple); min-width:28px; padding-top:4px; line-height:2.5; }
+.reason-text { font-size:0.92rem; font-weight:700; color:var(--dark); line-height:1.75; }
+.reason-end { text-align:center; font-family:'Dancing Script',cursive; font-size:1.3rem; color:var(--pink); margin-top:24px; padding:20px; border-top:3px solid var(--pink); }
+
+/* ═══ SPIN WHEEL ═══ */
+.wheel-wrap { position:relative; width:280px; margin:0 auto 8px; }
+.wheel-pointer { text-align:center; font-size:1.4rem; color:var(--dark); line-height:1; margin-bottom:-6px; position:relative; z-index:3; }
+#spinWheel { border:4px solid var(--dark); border-radius:50%; box-shadow:4px 4px 0 var(--dark); display:block; }
+.date-result-card { background:white; border:3px solid var(--pink); border-left:6px solid var(--pink); box-shadow:4px 4px 0 var(--pink); padding:16px 18px; margin:14px 0 0; font-size:0.88rem; font-weight:800; color:var(--dark); line-height:1.75; text-align:center; animation:spinPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
 </style>
 </head>
 <body>
@@ -458,7 +491,7 @@ body {
   <button class="nb" onclick="showSec('letter')"><span class="ni">💌</span>LETTER</button>
   <button class="nb" onclick="showSec('pokemon')"><span class="ni">⚡</span>PKMN</button>
   <button class="nb" onclick="showSec('diary')"><span class="ni">📓</span>DIARY</button>
-  <button class="nb" onclick="showSec('games')"><span class="ni">🎮</span>GAMES</button>
+  <button class="nb" onclick="showSec('games')"><span class="ni">💕</span>NIKU</button>
   <button class="nb" onclick="showSec('quotes')"><span class="ni">✨</span>QUOTES</button>
   <button class="nb" onclick="showSec('music')"><span class="ni">🎵</span>MUSIC</button>
 </nav>
@@ -627,6 +660,36 @@ body {
       <div class="pname">MEW</div>
       <span class="type-badge type-psychic">Psychic</span>
     </div>
+    <div class="poke-card" onclick="pokeReact('psyduck')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/54.gif" alt="Psyduck">
+      <div class="pname">PSYDUCK</div>
+      <span class="type-badge type-water">Water</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('lapras')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/131.gif" alt="Lapras">
+      <div class="pname">LAPRAS</div>
+      <span class="type-badge type-water">Water</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('espeon')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/196.gif" alt="Espeon">
+      <div class="pname">ESPEON</div>
+      <span class="type-badge type-psychic">Psychic</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('skitty')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/300.gif" alt="Skitty">
+      <div class="pname">SKITTY</div>
+      <span class="type-badge type-normal">Normal</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('luvdisc')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/370.gif" alt="Luvdisc">
+      <div class="pname">LUVDISC</div>
+      <span class="type-badge type-water">Water</span>
+    </div>
+    <div class="poke-card" onclick="pokeReact('togekiss')">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/468.gif" alt="Togekiss">
+      <div class="pname">TOGEKISS</div>
+      <span class="type-badge type-fairy">Fairy</span>
+    </div>
     <div class="poke-card" onclick="pokeReact('vulpix')">
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/37.gif" alt="Vulpix">
       <div class="pname">VULPIX</div>
@@ -650,6 +713,14 @@ body {
   </div>
 </section>
 
+
+<div class="poke-overlay" id="surpriseOverlay" onclick="closeSurprise()"></div>
+<div class="poke-reaction" id="surpriseReaction" style="max-width:320px">
+  <img id="surprisePokeSpr" style="width:72px;height:72px;image-rendering:pixelated;display:block;margin:0 auto 8px;animation:wob 1.5s ease-in-out infinite" src="" alt="">
+  <div class="pr-emoji" id="surpriseEmoji"></div>
+  <div class="pr-msg" id="surpriseMsg"></div>
+  <button class="pr-close" onclick="closeSurprise()">AWW 💛</button>
+</div>
 <div class="poke-overlay" id="pokeOverlay" onclick="closePokeReact()"></div>
 <div class="poke-reaction" id="pokeReaction">
   <div class="pr-emoji" id="prEmoji"></div>
@@ -687,8 +758,8 @@ body {
 <!-- GAMES -->
 <section class="sec" id="games">
   <div class="sec-header">
-    <h2 class="sec-title">🎮 Play Zone</h2>
-    <p class="sec-sub">Boredom is NOT allowed here 😤</p>
+    <h2 class="sec-title">💕 For Niku</h2>
+    <p class="sec-sub">Games, dates & everything for us 🌸</p>
   </div>
   <div id="gamesMenu">
     <div class="games-grid">
@@ -696,6 +767,8 @@ body {
       <div class="game-card" onclick="showGame('Truth')"><div class="game-icon">🎰</div><div class="game-name">TRUTH SPINNER</div><div class="game-desc">Deep & silly questions</div></div>
       <div class="game-card" onclick="showGame('Catch')"><div class="game-icon">⚡</div><div class="game-name">CATCH PKMN!</div><div class="game-desc">Tap them before they run</div></div>
       <div class="game-card" onclick="showGame('Compliment')"><div class="game-icon">💝</div><div class="game-name">COMPLIMENT</div><div class="game-desc">You need this daily tbh</div></div>
+      <div class="game-card" onclick="showGame('Date')" style="border-color:var(--pink);"><div class="game-icon">💑</div><div class="game-name">VIRTUAL DATE</div><div class="game-desc">What should we do today?</div></div>
+      <div class="game-card" onclick="showGame('Reasons')" style="border-color:var(--purple);"><div class="game-icon">📜</div><div class="game-name">REASONS I—</div><div class="game-desc">Read this when you need it</div></div>
     </div>
   </div>
   <div class="game-area" id="gameQuiz"><button class="game-back" onclick="hideGame('Quiz')">← BACK</button><div id="quizContent"></div></div>
@@ -714,6 +787,71 @@ body {
     <button class="game-back" onclick="hideGame('Compliment')">← BACK</button>
     <div class="truth-card" id="complimentCard">Ready for some appreciation? 💝</div>
     <button class="spin-btn" onclick="newCompliment()">GIVE ME A COMPLIMENT 💫</button>
+  </div>
+  <div class="game-area" id="gameReasons" style="padding:0">
+    <div class="reasons-header">
+      <button class="game-back" onclick="hideGame('Reasons')" style="margin:0 0 0 16px;padding-top:16px;display:block">← BACK</button>
+      <div style="text-align:center;padding:12px 16px 16px">
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--dark);line-height:2.2">📜 Reasons I—</div>
+        <div style="font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--pink);margin-top:2px">reasons why you're my favorite person 🥺</div>
+      </div>
+    </div>
+    <div class="reasons-scroll">
+        <div class="reason-item"><span class="reason-num">01.</span><span class="reason-text">Ek message se mera poora din ban jaata hai. Literally just one.</span></div>
+        <div class="reason-item"><span class="reason-num">02.</span><span class="reason-text">Teri awaaz sunke jo sukoon milta hai, woh kisi aur cheez se nahi milta. Kisi bhi cheez se nahi.</span></div>
+        <div class="reason-item"><span class="reason-num">03.</span><span class="reason-text">Jitni baar bhi baat karo, jitne ghante nikal jaayein — main phir bhi chahta hoon thodi aur der. Hamesha.</span></div>
+        <div class="reason-item"><span class="reason-num">04.</span><span class="reason-text">Tu kabhi enough nahi lagti mere liye. Aur yeh complain nahi hai, yeh mere liye sabse badi baat hai.</span></div>
+        <div class="reason-item"><span class="reason-num">05.</span><span class="reason-text">Tune mujhe bore hone ka matlab bhula diya. Tujhse? Kabhi nahi. Kabhi nahi hounga.</span></div>
+        <div class="reason-item"><span class="reason-num">06.</span><span class="reason-text">Phone rakhta hoon aur screen off hoti hai — aur ek dum se khaali sa lagta hai. Yeh tujhe miss karna hai. Har baar.</span></div>
+        <div class="reason-item"><span class="reason-num">07.</span><span class="reason-text">Tu meri aadat ban chuki hai. Aur main iska complaint department dhundh ke nahi aaya.</span></div>
+        <div class="reason-item"><span class="reason-num">08.</span><span class="reason-text">Tune ek baar pucha tha ki main bore nahi hota kya... aur yaar, yeh sawal hi itna sweet tha ki mujhe samajh aaya ki tu actually sochti hai mere baare mein.</span></div>
+        <div class="reason-item"><span class="reason-num">09.</span><span class="reason-text">"I hope you have peace at least in your sleep" — yeh tune likha tha. Koi nahi kehta yeh. Tu kehti hai. Bas tu.</span></div>
+        <div class="reason-item"><span class="reason-num">10.</span><span class="reason-text">Tu mujhe good morning kehti hai aur din kuch alag hi hota hai. "My sweet sweet boy" 😭 teri himmat kaise hoti hai yaar.</span></div>
+        <div class="reason-item"><span class="reason-num">11.</span><span class="reason-text">Tune mere liye alarm nahi lagaya kyunki tujhe laga mujhe neend chahiye. Koi nahi sochta yeh. Seriously. Koi nahi.</span></div>
+        <div class="reason-item"><span class="reason-num">12.</span><span class="reason-text">Tere messages mere paas kuch din tak rehte hain. Padhta hoon, rakhta hoon, phir wapas padhta hoon. Tu nahi jaanti yeh shayad.</span></div>
+        <div class="reason-item"><span class="reason-num">13.</span><span class="reason-text">Tu mujhe fever mein bhi theek kar deti hai. Woh wali cheez hai jo explain nahi hoti yaar.</span></div>
+        <div class="reason-item"><span class="reason-num">14.</span><span class="reason-text">Tujhe paas feel karna chahta hoon — aur yeh akela ek cheez hai jo screen nahi de sakti. Aur usi ki kami sabse zyada lagti hai.</span></div>
+        <div class="reason-item"><span class="reason-num">15.</span><span class="reason-text">Tu mere liye 'most certain thing' hai abhi. Sab kuch uncertain lag raha hai life mein — aur tu nahi. Tu nahi lagte kabhi.</span></div>
+        <div class="reason-item"><span class="reason-num">16.</span><span class="reason-text">Tune mujhe wapas Spider-Man dilaya. CS:GO shorts, superhero movies, childhood waali feeling — yaar yeh tujhse aaya hai. Seriously.</span></div>
+        <div class="reason-item"><span class="reason-num">17.</span><span class="reason-text">Maine Spider-Gwen ka toy kharida. Aur seedha tujhe socha. Tu hi hai woh. Tu hi hogi.</span></div>
+        <div class="reason-item"><span class="reason-num">18.</span><span class="reason-text">Tere saath hone ke baad main doom scroll nahi karta. Actually cheezein karta hoon. Tu mujhe productive banati hai bina bole.</span></div>
+        <div class="reason-item"><span class="reason-num">19.</span><span class="reason-text">Maine Spider-Man pillow kharida. Yeh teri wajah se hai. Directly. No debate.</span></div>
+        <div class="reason-item"><span class="reason-num">20.</span><span class="reason-text">Tu mere andar ke us bande ko wapas layi jo games khelna chahta tha, superhero movies dekhna chahta tha. Woh kho gaya tha. Tune dhundha.</span></div>
+        <div class="reason-item"><span class="reason-num">21.</span><span class="reason-text">Tere baare mein sochta hoon way more than anything useful in my life — aur mujhe ek second ke liye bura nahi lagta.</span></div>
+        <div class="reason-item"><span class="reason-num">22.</span><span class="reason-text">Teri hasi sunni nahi abhi tak properly — aur main already jaanta hoon ki woh meri favorite sound hogi. Kuch cheezein pehle se feel hoti hain.</span></div>
+        <div class="reason-item"><span class="reason-num">23.</span><span class="reason-text">Tere gaalon ke baare mein sochta hoon. Dheere se haath lagana chahta hoon. Bas wahi ek second. Kuch nahi karna, bas wahi rehna.</span></div>
+        <div class="reason-item"><span class="reason-num">24.</span><span class="reason-text">Teri aankhon ko kiss karna chahta hoon. Tere shoulders pe. Tere baalon mein haath pherna chahta hoon. Yeh sab sochta hoon — aur yeh normal nahi hai yaar, yeh tujhse hai.</span></div>
+        <div class="reason-item"><span class="reason-num">25.</span><span class="reason-text">Tujhe baat karte sunna chahta hoon. Kuch bhi. Anytime. Bas teri awaaz, bas tu.</span></div>
+        <div class="reason-item"><span class="reason-num">26.</span><span class="reason-text">Tu reply karne mein der karti hai kyunki tu sach mein feel karti hai cheezein. Deeply. Aur woh mujhe tere baare mein sabse zyada pasand hai.</span></div>
+        <div class="reason-item"><span class="reason-num">27.</span><span class="reason-text">Tune kabhi bhi mujhe rush nahi kiya. Kabhi judge nahi kiya. Bas suna. Yeh rare hai yaar. Bohot rare.</span></div>
+        <div class="reason-item"><span class="reason-num">28.</span><span class="reason-text">Tere bina din complete nahi lagta. Yeh dramatic nahi hai — yeh literally sach hai.</span></div>
+        <div class="reason-item"><span class="reason-num">29.</span><span class="reason-text">Tu jaanti hai kab chup rehna hai aur kab bolna hai. Yeh skill world mein bahut kam logon ke paas hai. Tere paas hai.</span></div>
+        <div class="reason-item"><span class="reason-num">30.</span><span class="reason-text">Tu mujhe feel karaati hai ki main actually interesting hoon. Jaise jo main bolun, woh matter karta hai. Yeh feeling bohot badi hoti hai yaar.</span></div>
+        <div class="reason-item"><span class="reason-num">31.</span><span class="reason-text">Distance ke baad bhi — tere saath woh warmth hai jo paas wale logon ke saath bhi nahi hoti.</span></div>
+        <div class="reason-item"><span class="reason-num">32.</span><span class="reason-text">"Thank you for being you" — tune yeh likha. Par yaar, thank you for being YOU. Seriously. Tujhe koi idea nahi.</span></div>
+        <div class="reason-item"><span class="reason-num">33.</span><span class="reason-text">Tujhse pyaar mein padna ya nahi padna — baad ki baat hai. Par jo main feel karta hoon woh real hai. Aur woh nahi badlega.</span></div>
+        <div class="reason-item"><span class="reason-num">34.</span><span class="reason-text">Tu meri aadat hai, mera sukoon hai, meri favorite notification hai, meri favorite awaaz hai — aur yeh sab ek saath, ek hi insaan mein. Bas tu.</span></div>
+        <div class="reason-item"><span class="reason-num">35.</span><span class="reason-text">Aur last wali — jab bhi tu poochegi 'main enough hoon?' — mera jawab hamesha wahi rahega. Tu kabhi enough nahi hoti. Hamesha kam lagti hai. Hamesha.</span></div>
+      <div class="reason-end">💛 That's all of them. For now. — Yashraj</div>
+    </div>
+  </div>
+  <div class="game-area" id="gameDate">
+    <button class="game-back" onclick="hideGame('Date')">← BACK</button>
+    <div style="text-align:center;margin-bottom:14px">
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--dark);line-height:2.2;margin-bottom:4px">💑 VIRTUAL DATE SPINNER</div>
+      <div style="font-size:0.82rem;font-weight:700;color:var(--mid)">Pick a category, spin the wheel 🌸</div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
+      <button class="date-cat-btn active" id="dcWatch" onclick="setDateCat('watch',this)">🎬 Watch</button>
+      <button class="date-cat-btn" id="dcVoice" onclick="setDateCat('voice',this)">🎙️ Voice</button>
+      <button class="date-cat-btn" id="dcDeep" onclick="setDateCat('deep',this)">💬 Deep</button>
+    </div>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer">▼</div>
+      <canvas id="spinWheel" width="280" height="280"></canvas>
+    </div>
+    <div class="date-result-card" id="dateCard" style="display:none"></div>
+    <button class="spin-btn" style="background:var(--pink);color:white;border-color:var(--dark);margin-top:14px" onclick="spinDate()">SPIN THE DATE 💑</button>
   </div>
 </section>
 
@@ -775,6 +913,13 @@ body {
     <p style="font-size:0.82rem;font-weight:700;color:var(--mid);margin-bottom:14px;">This playlist is just… you. Every song here played and I thought of Niku. 🥺</p>
     <div class="mp-label">🎧 Spotify</div>
     <a href="https://open.spotify.com/playlist/4If9qRaUUfsxULfG7irZXS?si=dc9f58bc95ee4422" target="_blank" rel="noopener" class="yt-thumb-btn" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:14px 16px;background:#1DB954;border:3px solid var(--dark);color:white"><span style="font-size:1.8rem">🎧</span><span class="yt-thumb-label" style="color:white">OPEN ON SPOTIFY ▶</span></a>
+  <div class="songs-remind-card" style="border-color:var(--purple);box-shadow:4px 4px 0 var(--purple);margin-top:0;">
+    <div class="sr-header">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/440.gif" style="width:40px;height:40px;image-rendering:pixelated;animation:wob 3s ease-in-out infinite;">
+      <div class="sr-title" style="color:var(--purple-d)">Songs I wrote<br>for you 🎵</div>
+    </div>
+    <p style="font-size:0.82rem;font-weight:700;color:var(--mid);margin-bottom:14px;">These are mine. Words I wrote, melodies I made — all of them are for you. 🥺💛</p>
+    <a href="https://1drv.ms/f/c/81c75a5afa81d9f0/IgB1eNs169npS4cYBOvEq4KKAV1IoWw-y8Rl4QFDRAG3F2k?e=IQFE9L" target="_blank" rel="noopener" class="yt-thumb-btn" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--purple-d);border:3px solid var(--dark);color:white"><span style="font-size:1.8rem">🎵</span><span class="yt-thumb-label" style="color:white">OPEN MY SONGS ▶</span></a>
   </div>
 </section>
 
@@ -935,15 +1080,33 @@ function nextFact(){
 }
 
 // ═══ SURPRISE ═══
+const SURPRISE_POKES = [
+  {id:172, e:"⚡💛", m:"Pichu's ears went up! He says: Yashraj misses you specifically right now. Like, at this exact second. Pichu confirmed it. 💛"},
+  {id:173, e:"⭐🌸", m:"Cleffa did a tiny spin and said: you're his favorite person. Out of everyone. That spot is just yours. 🌸✨"},
+  {id:174, e:"🎵💕", m:"Igglybuff bounced over! She says he re-reads your conversations. Often. Quietly. Like the best parts of a book. 💕"},
+  {id:298, e:"💧🥺", m:"Azurill is floating! She says: screen off hoti hai aur khaali sa lagta hai. You fill something in him. That's big. 💧💛"},
+  {id:300, e:"🐱✨", m:"Skitty ran in circles! She says: you fixed his routine, his mood, his mornings — all without trying. Powerful. ✨"},
+  {id:351, e:"☁️💛", m:"Castform changed to sunny form just for you! She says you make even his difficult days feel lighter somehow. ☀️💛"},
+  {id:427, e:"🐰🌸", m:"Buneary hopped over immediately! She says: you're someone he thinks about way more than anything useful. Zero regrets. 🐰🌸"},
+  {id:440, e:"🩷🥚", m:"Happiny is doing her happy waddle! She says: 'I will love you, always' — he heard that. He's keeping it. Forever. 🩷"},
+  {id:447, e:"💙⚡", m:"Riolu sensed something with his aura powers — you're the most certain thing in his life right now. Everything uncertain. You aren't. 💙✨"},
+];
+let lastSurpriseIdx = -1;
 function doSurprise(){
   confetti();
-  const msgs = [
-    "Surprise: Yashraj misses you specifically right now 💛",
-    "Plot twist: You're literally his favorite person 🌸",
-    "Surprise: He re-reads your chats. Often. Don't tell him I told you. ✨",
-    "The real surprise was the love we found along the way 🥺"
-  ];
-  showToast(msgs[~~(Math.random()*msgs.length)]);
+  let idx;
+  do { idx = ~~(Math.random()*SURPRISE_POKES.length); } while(idx === lastSurpriseIdx && SURPRISE_POKES.length > 1);
+  lastSurpriseIdx = idx;
+  const p = SURPRISE_POKES[idx];
+  document.getElementById('surprisePokeSpr').src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${p.id}.gif`;
+  document.getElementById('surpriseEmoji').textContent = p.e;
+  document.getElementById('surpriseMsg').textContent = p.m;
+  document.getElementById('surpriseOverlay').classList.add('show');
+  document.getElementById('surpriseReaction').classList.add('show');
+}
+function closeSurprise(){
+  document.getElementById('surpriseOverlay').classList.remove('show');
+  document.getElementById('surpriseReaction').classList.remove('show');
 }
 
 // ═══ SECRET NOTE ═══
@@ -990,6 +1153,12 @@ const POKE = {
   squirtle:{e:"🕷️💙",m:["Squirtle heard you bought the Spider-Man pillow AND the Spider-Gwen figure. He says Spider-Gwen toh clearly Niku hi hai. And he's not wrong. 🕷️💕","Childhood Yashraj is SO back — superhero movies, the toys, all of it. Squirtle says: she brought back a part of him he thought was gone. That's not small. 💛","He got the Spider-Man pillow. The toys. All of them. Squirtle says: this is what happiness looks like when someone heals you without even trying. 🌟"]},
   gengar:{e:"👻✨",m:["Gengar noticed: less doom scrolling, more actually living. He says you snuck into his life and quietly fixed things. Sneaky. Powerful. 👻💛","He saw a CS:GO short and felt something. Watched superhero movies like he used to. Gengar says: she's healing him and she doesn't even fully know it. 👻🌸","Gengar says enjoying things again after losing them for a long time is rare. You gave that back. Just by being you. That's kind of huge. ✨"]},
   mew:{e:"🌸💕",m:["Mew floated over and read his thoughts. She blushed immediately. He wants to hold your face very gently. Play with your hair. Kiss your shoulders. Just be near you. All of it. 🥺💕","Mew says: he doesn't just want to hug you. He wants to listen to you talk. Play with your cheeks. Stay. That kind of want is soft and real and a lot. 🌸","Mew whispered: he thinks about you close to him. Every version of close. Hug, hair, eyes, shoulders — all of it. Mew understands. She wants all your attention too. 💕✨"]},
+  psyduck:{e:"🤕💛",m:["Psyduck's headache literally went away when he heard this: Niku read his messages and his fever lifted. Just like that. Psyduck says: that's not normal. That's something else entirely. 💛","Psyduck is very emotional right now. She woke up, read his words, and something just lifted. He says: you healed him through a screen. Do you understand how powerful that is? 🥺","He kept re-reading to make sure he understood correctly. Yep. Her message made his fever go away. Psyduck says: that's not medicine. That's love. 💛✨"]},
+  lapras:{e:"💗🌊",m:["Lapras heard 'I will love you, always 💗' and immediately started tearing up. She says: those words from her, after everything — they're not small words. They're everything. 💗","Lapras floated over quietly and said: she took days to reply. Not because she didn't care. Because she cared so much she didn't know what to do with it. That's rare. 🌊💕","She read 'I will love you, always' and kept swimming in circles. Lapras says: some words land differently. These ones? They don't leave. 💗✨"]},
+  espeon:{e:"🔮💛",m:["Espeon used her psychic powers and saw it clearly: you are the most certain thing in his life right now. Everything else is uncertain. You aren't. Not even a little. 🔮💛","Espeon says: do you know how rare it is to be someone's 'most certain thing'? In a life full of questions — you're the answer he doesn't have to doubt. 💛✨","She glowed softly and whispered: he thinks about you way more than anything useful. And he doesn't feel bad about it even a little bit. Neither does Espeon. 🔮🌸"]},
+  skitty:{e:"🐱🌸",m:["Skitty heard this and curled up immediately: she didn't wake him at 8am because she knew he needed sleep. Without being asked. Without hinting. She just knew. 🐱💛","Skitty says: most people wait to be told. You just felt it and acted on it. That's the kind of person who is genuinely rare in this world. She's one of them. 🌸","She tilted her head and said quietly: 'who thinks like that?' He asked. Skitty knows the answer. You do. You always do. 🐱✨"]},
+  luvdisc:{e:"💕👀",m:["Luvdisc saw the whole thing: she kept opening the chat, staring at his messages, and closing it again. Not because she didn't care — because she cared so much the words felt too big for a simple reply. 💕","She kept rereading and every time it hit differently. Luvdisc says: being someone whose words hit differently every single time? That's him. And being someone who feels it that deeply? That's you. 💕✨","Luvdisc floated over with hearts in her eyes. She says: 'some things are just too much for a simple aww reply' — she said that about HIS words. He should probably know that. 🥺💕"]},
+  togekiss:{e:"🕊️💛",m:["Togekiss felt this one deeply: phone rakhta hoon, screen off hoti hai — aur ek dum se khaali sa lagta hai. She says: that emptiness is proof. The right people leave a gap when they're gone. 🕊️💛","Togekiss says: 'I kept staring at your messages for days and they stayed with me for a long time.' She said that about you. Your words live in people. That's not small. ✨","She spread her wings softly. Togekiss says: he described missing you as — the screen goes off and everything feels empty. That's not missing. That's you being home. 💛🌸"]},
   vulpix:{e:"🦊🩷",m:["Vulpix turned extra red when she heard: only Niku can make Yashraj blush. No one else. She says that's the most romantic thing she's ever heard. 🦊🩷","Vulpix says: imagine being the only person in someone's entire world who can do that to them. That's you. Just you. 🔥💕","She lit up when she found out. Vulpix says: a blush like that doesn't happen for just anyone. You're not just anyone. 🦊✨"]},
   umbreon:{e:"🖤✨",m:["Umbreon heard 'Spider Gwen toh aap he ho' and immediately agreed. Cool, strong, beautiful, a little mysterious — yeah. That tracks completely. 🖤💜","Umbreon says: he didn't even hesitate. Spider-Gwen = Niku. He sees you as his favorite character in every universe. 🌙✨","Umbreon nodded slowly. Spider-Gwen has that 'coolest person in the room without trying' energy. So do you. He noticed a long time ago. 🖤💕"]},
   chansey:{e:"🩷🥚",m:["Chansey heard 'thank you for being in my life' and started crying happy tears immediately. She says: he means every word. Every single one. 🩷","Chansey says: the fact that someone feels that grateful just because you exist? You're doing something right by simply being you. 🥚💕","She held her egg tight and smiled. Chansey says: he found something rare in you. The kind of rare you don't let go of. Ever. 🩷✨"]},
@@ -1033,9 +1202,10 @@ renderEntries();
 // ═══ GAMES ═══
 function showGame(n){
   document.getElementById('gamesMenu').style.display = 'none';
-  ['Quiz','Truth','Catch','Compliment'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
+  ['Quiz','Truth','Catch','Compliment','Date','Reasons'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
   document.getElementById('game'+n).classList.add('show');
   if(n === 'Quiz') initQuiz();
+  if(n === 'Date') { wheelAngle = 0; drawWheel(0); }
 }
 function hideGame(n){ document.getElementById('gamesMenu').style.display = 'grid'; document.getElementById('game'+n).classList.remove('show'); stopCatch(); }
 
@@ -1194,6 +1364,151 @@ function selectMood(mood) {
   wrap.classList.add('show');
   wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   confetti();
+}
+
+
+// ═══ DATE SPINNER ═══
+const DATE_IDEAS = {
+  watch: [
+    "Watch the same movie tonight — you both pick one and vote 🎬",
+    "YouTube rabbit hole — send each other videos for 30 mins 🐇",
+    "Watch a Pokémon episode simultaneously ⚡",
+    "Listen to the same album start to finish on call 🎵",
+    "Find the most unhinged YouTube video and react together 😭",
+    "Pick a random documentary, watch first 10 mins — continue if both like it 📽️",
+    "Find a song neither of you has heard before and react live 🎧",
+    "Watch each other's favorite childhood movie 🌸",
+    "Pick a random country, find their #1 song right now 🌍",
+    "Rewatch your comfort show episode together 💕",
+    "Find a short film on YouTube under 15 mins and watch together 🎥",
+    "React to each other's most played song of the month 🎶",
+    "Watch an 'oddly satisfying' compilation and rank them ✨",
+    "Find the worst rated movie on IMDb and suffer together 😭",
+    "Pick a random genre on Spotify neither of you listens to usually 🎵",
+  ],
+  voice: [
+    "Call and just don't hang up — background call, just exist together 🌙",
+    "Send a voice note right now, no texts only voice for 1 hour 🎙️",
+    "Read your last 10 texts out loud in funny accents 😂",
+    "Call and eat something at the same time — 'dinner date' 🍜",
+    "Describe your room like the other person has never seen it 🏠",
+    "Record 'I miss you' in 5 different languages and send 🌸",
+    "Give each other a window tour — what you can see right now 🌇",
+    "Read something out loud — article, meme, Wikipedia rabbit hole 📖",
+    "Do a voice note check-in every hour for a whole day 💛",
+    "Call and both just stare at the ceiling and talk about random things ✨",
+    "Rant to each other about something that mildly annoyed you today 😤",
+    "Do a 'radio DJ' voice note — narrate your whole evening 🎙️",
+    "Call during golden hour and just describe what the light looks like 🌅",
+    "Tell each other a story from childhood the other hasn't heard 🥺",
+    "Hum a song, other person guesses — no words allowed 🎵",
+  ],
+  deep: [
+    "'What would your Pokémon team of 6 be and why — GO' ⚡",
+    "'Describe our relationship as a movie genre' 🎬",
+    "'If we had a band what would it be called and what genre' 🎸",
+    "'What's a memory of us you replay a lot?' 🥺",
+    "'What does a perfect day with me look like to you?' 💛",
+    "'What's one thing you wish I knew about you?' 🌸",
+    "'If you could relive one moment of us, which one?' 💕",
+    "Rate your current missing-him level 1-10 and explain 👀",
+    "'If we lived in the same city what would today look like' 🏙️",
+    "'Describe each other in 5 Pokémon and explain why' ⚡",
+    "'What's something you were scared to say before but aren't now?' 💛",
+    "'What's a small thing I do that you really like?' 🥺",
+    "'What's your most embarrassing memory — no skipping' 😭",
+    "'What song would play if our relationship was a movie scene' 🎵",
+    "'Write 3 things you love about each other, read at the same time' 💕",
+  ],
+};
+let curDateCat = 'watch', lastDateIdx = -1;
+function setDateCat(cat, btn) {
+  curDateCat = cat;
+  document.querySelectorAll('.date-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('dateCard').style.display = 'none';
+  drawWheel(wheelAngle);
+}
+// ── Wheel drawing ──
+const WHEEL_COLORS = ['#FF6B9D','#FFD93D','#B197FC','#96F2D7','#74C0FC','#FF9AB5','#FFE066','#A8EDDA'];
+const WHEEL_LABELS = { watch:['🎬','🍿','📽️','🎥','📺','🎞️','🌟','🎮'], voice:['🎙️','📞','🗣️','🎵','🌙','💬','✨','🎧'], deep:['💬','💭','🥺','💕','🌸','💛','✨','🎯'] };
+let wheelAngle = 0, wheelSpinning = false;
+
+function drawWheel(angle) {
+  const canvas = document.getElementById('spinWheel');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 140, cy = 140, r = 130;
+  const pool = DATE_IDEAS[curDateCat];
+  const slices = Math.min(pool.length, 8);
+  const arc = (2 * Math.PI) / slices;
+  const labels = WHEEL_LABELS[curDateCat];
+  ctx.clearRect(0, 0, 280, 280);
+  for (let i = 0; i < slices; i++) {
+    const start = angle + i * arc;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, start + arc);
+    ctx.closePath();
+    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = '#1A1A2E';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(start + arc / 2);
+    ctx.font = '22px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i % labels.length], r * 0.62, 0);
+    ctx.restore();
+  }
+  // center circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 18, 0, 2 * Math.PI);
+  ctx.fillStyle = '#1A1A2E';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(cx, cy, 12, 0, 2 * Math.PI);
+  ctx.fillStyle = '#FFD93D';
+  ctx.fill();
+}
+
+function spinDate() {
+  if (wheelSpinning) return;
+  wheelSpinning = true;
+  const pool = DATE_IDEAS[curDateCat];
+  let idx;
+  do { idx = ~~(Math.random() * pool.length); } while (idx === lastDateIdx && pool.length > 1);
+  lastDateIdx = idx;
+
+  const slices = Math.min(pool.length, 8);
+  const arc = (2 * Math.PI) / slices;
+  // target angle: land idx slice under pointer (top = -π/2)
+  const targetSliceAngle = -Math.PI / 2 - (idx % slices) * arc - arc / 2;
+  const spins = 5 + Math.random() * 3;
+  const totalRotation = spins * 2 * Math.PI + (targetSliceAngle - (wheelAngle % (2 * Math.PI)));
+  const start = performance.now();
+  const duration = 3000 + Math.random() * 800;
+  const startAngle = wheelAngle;
+
+  function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    wheelAngle = startAngle + totalRotation * ease(t);
+    drawWheel(wheelAngle);
+    if (t < 1) { requestAnimationFrame(frame); }
+    else {
+      wheelSpinning = false;
+      const card = document.getElementById('dateCard');
+      card.style.display = 'block';
+      card.textContent = pool[idx];
+      confetti();
+    }
+  }
+  requestAnimationFrame(frame);
 }
 
 // ═══ CONFETTI ═══
