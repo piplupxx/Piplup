@@ -446,6 +446,21 @@ body {
 .wheel-pointer { text-align:center; font-size:1.4rem; color:var(--dark); line-height:1; margin-bottom:-6px; position:relative; z-index:3; }
 #spinWheel { border:4px solid var(--dark); border-radius:50%; box-shadow:4px 4px 0 var(--dark); display:block; }
 .date-result-card { background:white; border:3px solid var(--pink); border-left:6px solid var(--pink); box-shadow:4px 4px 0 var(--pink); padding:16px 18px; margin:14px 0 0; font-size:0.88rem; font-weight:800; color:var(--dark); line-height:1.75; text-align:center; animation:spinPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ═══ QUESTIONS ═══ */
+.qs-cat-row { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-bottom:16px; }
+.qs-cat-btn { background:var(--cream); border:2px solid var(--dark); padding:6px 10px; font-family:'Press Start 2P',monospace; font-size:0.22rem; cursor:pointer; transition:all 0.12s; color:var(--dark); line-height:2; box-shadow:2px 2px 0 var(--dark); }
+.qs-cat-btn:active { transform:translate(1px,1px); box-shadow:1px 1px 0 var(--dark); }
+.qs-cat-btn.active { background:#FF9AB5; color:white; }
+.qs-random-card { background:white; border:3px solid #FF9AB5; border-left:6px solid #FF9AB5; box-shadow:4px 4px 0 #FF9AB5; padding:20px 18px; margin:0 0 14px; font-size:1rem; font-weight:800; color:var(--dark); line-height:1.75; min-height:80px; display:flex; align-items:center; text-align:center; justify-content:center; }
+.qs-random-card.pop { animation:spinPop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.qs-browse-list { display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.qs-browse-item { background:white; border:2px solid var(--dark); padding:14px 16px; font-size:0.88rem; font-weight:700; color:var(--dark); line-height:1.7; border-left:5px solid #FF9AB5; }
+.qs-browse-label { font-family:'Press Start 2P',monospace; font-size:0.28rem; color:#FF9AB5; margin-bottom:16px; text-align:center; line-height:2.5; }
+.qs-tab-row { display:flex; gap:0; margin-bottom:16px; border:3px solid var(--dark); overflow:hidden; }
+.qs-tab-btn { flex:1; padding:10px 4px; font-family:'Press Start 2P',monospace; font-size:0.22rem; cursor:pointer; background:var(--cream); border:none; border-right:2px solid var(--dark); color:var(--dark); line-height:2; transition:background 0.12s; }
+.qs-tab-btn:last-child { border-right:none; }
+.qs-tab-btn.active { background:#FF9AB5; color:white; }
 </style>
 </head>
 <body>
@@ -767,6 +782,7 @@ body {
       <div class="game-card" onclick="showGame('Compliment')"><div class="game-icon">💝</div><div class="game-name">COMPLIMENT</div><div class="game-desc">You need this daily tbh</div></div>
       <div class="game-card" onclick="showGame('Date')" style="border-color:var(--pink);"><div class="game-icon">💑</div><div class="game-name">VIRTUAL DATE</div><div class="game-desc">What should we do today?</div></div>
       <div class="game-card" onclick="showGame('Reasons')" style="border-color:var(--purple);"><div class="game-icon">📜</div><div class="game-name">REASONS I—</div><div class="game-desc">Read this when you need it</div></div>
+      <div class="game-card" onclick="showGame('Qs')" style="border-color:#FF9AB5;"><div class="game-icon">💬</div><div class="game-name">QUESTIONS</div><div class="game-desc">Answer at least one for me 💖</div></div>
     </div>
   </div>
   <div class="game-area" id="gameQuiz"><button class="game-back" onclick="hideGame('Quiz')">← BACK</button><div id="quizContent"></div></div>
@@ -785,6 +801,47 @@ body {
     <button class="game-back" onclick="hideGame('Compliment')">← BACK</button>
     <div class="truth-card" id="complimentCard">Ready for some appreciation? 💝</div>
     <button class="spin-btn" onclick="newCompliment()">GIVE ME A COMPLIMENT 💫</button>
+  </div>
+  <div class="game-area" id="gameQs" style="padding:16px">
+    <button class="game-back" onclick="hideGame('Qs')">← BACK</button>
+    <div style="text-align:center;margin:8px 0 14px">
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--dark);line-height:2.2">💬 Questions</div>
+      <div style="font-size:0.88rem;font-weight:700;color:#FF9AB5;margin-top:4px">Whenever you open these, please answer at least one for me. I love you 💖</div>
+    </div>
+    <div class="qs-tab-row">
+      <button class="qs-tab-btn active" onclick="setQsMode('random',this)">✨ Random</button>
+      <button class="qs-tab-btn" onclick="setQsMode('browse',this)">📖 Browse</button>
+    </div>
+    <!-- Random mode -->
+    <div id="qsRandom">
+      <div class="qs-cat-row" id="qsCatRow">
+        <button class="qs-cat-btn active" onclick="setQsCat('all',this)">All 💖</button>
+        <button class="qs-cat-btn" onclick="setQsCat('genuine',this)">🌸 Genuine</button>
+        <button class="qs-cat-btn" onclick="setQsCat('lovely',this)">💖 Lovely</button>
+        <button class="qs-cat-btn" onclick="setQsCat('together',this)">🌍 Together</button>
+        <button class="qs-cat-btn" onclick="setQsCat('hesitate',this)">🌙 Hesitate</button>
+        <button class="qs-cat-btn" onclick="setQsCat('untold',this)">🤍 Untold</button>
+        <button class="qs-cat-btn" onclick="setQsCat('aboutme',this)">🦋 About Me</button>
+        <button class="qs-cat-btn" onclick="setQsCat('future',this)">🌌 Future</button>
+        <button class="qs-cat-btn" onclick="setQsCat('flirty',this)">🔥 Flirty</button>
+      </div>
+      <div class="qs-random-card" id="qsCard">Tap below to get a question 💬</div>
+      <button class="spin-btn" style="background:#FF9AB5;color:white;border-color:var(--dark)" onclick="randomQs()">NEW QUESTION 💬</button>
+    </div>
+    <!-- Browse mode -->
+    <div id="qsBrowse" style="display:none">
+      <div class="qs-cat-row">
+        <button class="qs-cat-btn active" onclick="setBrowseCat('genuine',this)">🌸 Genuine</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('lovely',this)">💖 Lovely</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('together',this)">🌍 Together</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('hesitate',this)">🌙 Hesitate</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('untold',this)">🤍 Untold</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('aboutme',this)">🦋 About Me</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('future',this)">🌌 Future</button>
+        <button class="qs-cat-btn" onclick="setBrowseCat('flirty',this)">🔥 Flirty</button>
+      </div>
+      <div class="qs-browse-list" id="qsBrowseList"></div>
+    </div>
   </div>
   <div class="game-area" id="gameReasons" style="padding:0">
     <div class="reasons-header">
@@ -1200,14 +1257,14 @@ renderEntries();
 // ═══ GAMES ═══
 function showGame(n){
   document.getElementById('gamesMenu').style.display = 'none';
-  ['Quiz','Truth','Catch','Compliment','Date','Reasons'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
+  ['Quiz','Truth','Catch','Compliment','Date','Reasons','Qs'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
   document.getElementById('game'+n).classList.add('show');
   if(n === 'Quiz') initQuiz();
   if(n === 'Date') { wheelAngle = 0; drawWheel(0); }
 }
 function hideGame(n){ document.getElementById('gamesMenu').style.display = 'grid'; document.getElementById('game'+n).classList.remove('show'); stopCatch(); }
 
-const QS = [
+const QUIZ = [
   {q:"When did Yashraj and Niku start dating?",o:["4th Feb 2026","4th March 2026","14th Feb 2026","1st April 2026"],a:1},
   {q:"What does Yashraj say feels like the only signal in all the noise?",o:["Her texts","Her laugh","Her voice","Her presence"],a:2},
   {q:"Which Pokémon does Yashraj secretly think Niku is?",o:["Eevee","Pikachu","Piplup","Jigglypuff"],a:2},
@@ -1218,17 +1275,17 @@ const QS = [
 let qI = 0, qScore = 0;
 function initQuiz(){ qI = 0; qScore = 0; renderQ(); }
 function renderQ(){
-  if(qI >= QS.length){
+  if(qI >= QUIZ.length){
     document.getElementById('quizContent').innerHTML = `<div style="text-align:center;padding:10px"><div style="font-size:2.5rem;margin-bottom:10px">${qScore>=4?'🎉':'💛'}</div><div style="font-family:'Press Start 2P',monospace;font-size:0.8rem;color:#FF6B9D;margin-bottom:8px;line-height:2">${qScore}/${QS.length}</div><div style="font-size:0.85rem;font-weight:700;color:#6B6B9A;margin-bottom:16px">${qScore===QS.length?'PERFECT! Yashraj is shook 😭💛':qScore>=4?'You know him really well 💕':'The relationship is new, keep exploring! 🌸'}</div><button class="spin-btn" onclick="initQuiz()">PLAY AGAIN 🔄</button></div>`;
     return;
   }
-  const q = QS[qI];
-  document.getElementById('quizContent').innerHTML = `<div style="font-family:'Press Start 2P',monospace;font-size:0.32rem;color:#6B6B9A;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;line-height:2.2">Q ${qI+1} OF ${QS.length}</div><div class="quiz-q">${q.q}</div><div class="quiz-opts">${q.o.map((o,i)=>`<button class="quiz-opt" onclick="ansQ(${i},${q.a})">${o}</button>`).join('')}</div><div class="quiz-result" id="qRes"></div>`;
+  const q = QUIZ[qI];
+  document.getElementById('quizContent').innerHTML = `<div style="font-family:'Press Start 2P',monospace;font-size:0.32rem;color:#6B6B9A;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;line-height:2.2">Q ${qI+1} OF ${QUIZ.length}</div><div class="quiz-q">${q.q}</div><div class="quiz-opts">${q.o.map((o,i)=>`<button class="quiz-opt" onclick="ansQ(${i},${q.a})">${o}</button>`).join('')}</div><div class="quiz-result" id="qRes"></div>`;
 }
 function ansQ(c, a){
   document.querySelectorAll('.quiz-opt').forEach((b,i) => { b.disabled=true; if(i===a) b.classList.add('correct'); else if(i===c&&c!==a) b.classList.add('wrong'); });
   const r = document.getElementById('qRes');
-  if(c===a){ qScore++; r.textContent='✅ Correct! 💛'; confetti(); } else r.textContent='❌ Answer: '+QS[qI].o[a];
+  if(c===a){ qScore++; r.textContent='✅ Correct! 💛'; confetti(); } else r.textContent='❌ Answer: '+QUIZ[qI].o[a];
   setTimeout(() => { qI++; renderQ(); }, 1300);
 }
 
@@ -1507,6 +1564,63 @@ function spinDate() {
     }
   }
   requestAnimationFrame(frame);
+}
+
+
+// ═══ QUESTIONS ═══
+const QS = {
+  genuine: ["What's something about yourself that took you a long time to understand?","What's a part of you that you wish people noticed more?","What makes you feel safest with someone?","What's something you're still healing from?","What does happiness look like to you right now?","What do you think people misunderstand about you?","What makes you feel emotionally close to someone?","What's a dream you've never fully shared?","What kind of life would feel meaningful to you?","What's something you want to become better at?"],
+  lovely: ["What was your first impression of me?","What made you realize you were falling for me?","What's your favorite thing about us?","What's a small thing I do that makes you smile?","What do I do that makes you feel loved?","What memory of us do you revisit the most?","What's something you adore about me?","What nickname of yours do you love the most?","What part of our relationship feels the most special?","What do you imagine when you think of our future?"],
+  together: ["What's something you've always wanted us to do together?","What kind of date would make you happiest?","Where would you love to travel with me?","What's a quiet moment you want to experience with me?","What's something silly or fun you'd want us to try?","What's a tradition you'd like us to create?","What's a place you want to take me someday?","What's a movie or series you want us to binge together?","What kind of photos do you want us to recreate?","What dream of yours do you want me to be part of?"],
+  hesitate: ["What's something you've wanted to tell me but held back?","Is there anything you're afraid I might misunderstand?","What do you sometimes overthink about us?","What's something you wish I knew without you saying it?","What do you need more of from me?","Is there anything I do that unintentionally hurts you?","What are you scared to ask from me?","What feeling do you struggle to express?","What reassurance do you secretly crave?","What truth about you feels hard to share?"],
+  untold: ["What's a secret dream you've never mentioned?","What's a memory that still lives in your heart?","What's something you've never told anyone?","What thought crosses your mind more often than people realize?","What's a hidden talent or side of you I don't know?","What's a wish you carry quietly?","What's a fear that rarely leaves you?","What's something you're curious about but haven't explored?","What's a story from your childhood I haven't heard?","What's a tiny detail about yourself you think I'd love?"],
+  aboutme: ["How did I come across when we first met?","What was your first honest thought about me?","What about me felt different from other people?","What's something about me that surprised you?","What trait of mine turned out to be different than expected?","What side of me did you discover later?","What's something about me that others might not notice?","What part of me do you think is underrated?","What do you understand about me that most people don't?","How have I changed your life?","What do I make you feel?","What do you think I don't realize about myself?"],
+  future: ["What kind of home do you imagine for us?","What habits do you hope we keep forever?","What adventures do you want us to have?","What do you hope we'll laugh about years from now?","What does growing old together look like to you?"],
+  flirty: ["What's something about me you find irresistible?","What moment between us felt especially romantic?","What do you miss most when we're apart?","What's your favorite compliment I've given you?","What's a fantasy date you'd love with me?"],
+};
+const QS_ALL = Object.values(QS).flat();
+let curQsCat = 'all', lastQsIdx = -1, curBrowseCat = 'genuine', qsMode = 'random';
+
+function setQsMode(mode, btn) {
+  qsMode = mode;
+  document.querySelectorAll('.qs-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('qsRandom').style.display = mode === 'random' ? 'block' : 'none';
+  document.getElementById('qsBrowse').style.display = mode === 'browse' ? 'block' : 'none';
+  if (mode === 'browse') renderBrowse(curBrowseCat);
+}
+
+function setQsCat(cat, btn) {
+  curQsCat = cat;
+  document.querySelectorAll('#qsCatRow .qs-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  lastQsIdx = -1;
+}
+
+function randomQs() {
+  const pool = curQsCat === 'all' ? QS_ALL : (QS[curQsCat] || QS_ALL);
+  let idx;
+  do { idx = ~~(Math.random() * pool.length); } while (idx === lastQsIdx && pool.length > 1);
+  lastQsIdx = idx;
+  const card = document.getElementById('qsCard');
+  card.classList.remove('pop');
+  void card.offsetWidth;
+  card.classList.add('pop');
+  card.textContent = pool[idx];
+  confetti();
+}
+
+function setBrowseCat(cat, btn) {
+  curBrowseCat = cat;
+  document.querySelectorAll('#qsBrowse .qs-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBrowse(cat);
+}
+
+function renderBrowse(cat) {
+  const list = document.getElementById('qsBrowseList');
+  const items = QS[cat] || [];
+  list.innerHTML = items.map(q => '<div class="qs-browse-item">' + q + '</div>').join('');
 }
 
 // ═══ CONFETTI ═══
