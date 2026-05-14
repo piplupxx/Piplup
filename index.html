@@ -461,6 +461,14 @@ body {
 .qs-tab-btn { flex:1; padding:10px 4px; font-family:'Press Start 2P',monospace; font-size:0.22rem; cursor:pointer; background:var(--cream); border:none; border-right:2px solid var(--dark); color:var(--dark); line-height:2; transition:background 0.12s; }
 .qs-tab-btn:last-child { border-right:none; }
 .qs-tab-btn.active { background:#FF9AB5; color:white; }
+
+/* ═══ POEMS & UNSAID ═══ */
+.poem-card { background:white; border:3px solid var(--purple); box-shadow:4px 4px 0 var(--purple); padding:24px 20px; margin-bottom:18px; }
+.poem-title { font-family:'Press Start 2P',monospace; font-size:0.32rem; color:var(--purple-d); line-height:2.5; margin-bottom:12px; }
+.poem-body { font-family:'Dancing Script',cursive; font-size:1.25rem; color:var(--dark); line-height:2; white-space:pre-line; }
+.unsaid-card { background:white; border:3px solid #FFD93D; border-left:6px solid #FFD93D; box-shadow:4px 4px 0 #B8860B; padding:22px 20px; margin-bottom:18px; }
+.unsaid-label { font-family:'Press Start 2P',monospace; font-size:0.28rem; color:#B8860B; line-height:2.5; margin-bottom:12px; }
+.unsaid-body { font-size:0.92rem; font-weight:700; color:var(--dark); line-height:1.9; white-space:pre-line; }
 </style>
 </head>
 <body>
@@ -783,6 +791,8 @@ body {
       <div class="game-card" onclick="showGame('Date')" style="border-color:var(--pink);"><div class="game-icon">💑</div><div class="game-name">VIRTUAL DATE</div><div class="game-desc">What should we do today?</div></div>
       <div class="game-card" onclick="showGame('Reasons')" style="border-color:var(--purple);"><div class="game-icon">📜</div><div class="game-name">REASONS I—</div><div class="game-desc">Read this when you need it</div></div>
       <div class="game-card" onclick="showGame('Qs')" style="border-color:#FF9AB5;"><div class="game-icon">💬</div><div class="game-name">QUESTIONS</div><div class="game-desc">Answer at least one for me 💖</div></div>
+      <div class="game-card" onclick="showGame('Poems')" style="border-color:#B197FC;"><div class="game-icon">🌸</div><div class="game-name">POEMS</div><div class="game-desc">Written for you, always</div></div>
+      <div class="game-card" onclick="showGame('Unsaid')" style="border-color:#FFD93D;"><div class="game-icon">💌</div><div class="game-name">I WANNA SAY</div><div class="game-desc">Things I needed you to have</div></div>
     </div>
   </div>
   <div class="game-area" id="gameQuiz"><button class="game-back" onclick="hideGame('Quiz')">← BACK</button><div id="quizContent"></div></div>
@@ -801,6 +811,127 @@ body {
     <button class="game-back" onclick="hideGame('Compliment')">← BACK</button>
     <div class="truth-card" id="complimentCard">Ready for some appreciation? 💝</div>
     <button class="spin-btn" onclick="newCompliment()">GIVE ME A COMPLIMENT 💫</button>
+  </div>
+  <div class="game-area" id="gamePoems" style="padding:16px 16px 32px">
+    <button class="game-back" onclick="hideGame('Poems')">← BACK</button>
+    <div style="text-align:center;margin:8px 0 20px">
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--dark);line-height:2.2">🌸 Poems About You</div>
+      <div style="font-size:0.88rem;font-weight:700;color:var(--purple);margin-top:4px">Every word is yours. It always was. 💜</div>
+    </div>
+    <div class="poem-card">
+      <div class="poem-title">I — Surrender</div>
+      <div class="poem-body">I'll surrender....
+I'll surrender to you,
+I am entirely yours,
+My existence is entirely yours,
+I'm still waiting.
+
+The stars dream to be you,
+My heart and bones break,
+every time they aren't with you,
+You know I love you so.
+
+You... You are just like Polaris,
+The world always feels uncertain,
+But when I follow the Polaris,
+It always leads me back
+to what I call...
+
+Home</div>
+
+    <div class="poem-card">
+      <div class="poem-title">II — If Love Had a Shape</div>
+      <div class="poem-body">If love had a shape,
+It would look like your eyes,
+If peace had a sound,
+It would be your lullabies.
+
+If home had a heartbeat,
+It would beat just like you,
+And if forever exists,
+I want it spent with you.</div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">III — My Heaven</div>
+      <div class="poem-body">Baby, you're my heaven,
+The place my soul rests in,
+The quiet after every storm,
+The warmth beneath my skin.
+
+If I spend forever with you,
+I would still want more,
+Because every second in your arms,
+Feels like what I was made for.</div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">IV — Searchlight</div>
+      <div class="poem-body">When my world goes dark,
+And I can no longer see,
+You shine like a searchlight,
+And guide me back to me.
+
+You find me in the shadows,
+You call me by my name,
+And suddenly the night,
+Doesn't feel the same.</div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">V — Wherever You Go</div>
+      <div class="poem-body">If your heart grows tired,
+And your steps become slow,
+Take my hand, my love,
+I'll go wherever you go.
+
+When the road feels endless,
+And the sky forgets to shine,
+You will never walk alone,
+As long as your hand is in mine.</div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">VI — Home</div>
+      <div class="poem-body">The world can be so loud,
+So uncertain and cold,
+But in your voice,
+I find a place to hold.
+
+A place where I can rest,
+Where I don't need to hide,
+Because home has never been a place,
+It has always been your side.</div>
+    </div>
+  </div>
+
+  </div>
+  <div class="game-area" id="gameUnsaid" style="padding:16px 16px 32px">
+    <button class="game-back" onclick="hideGame('Unsaid')">← BACK</button>
+    <div style="text-align:center;margin:8px 0 20px">
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--dark);line-height:2.2">💌 Things I Wanna Say</div>
+      <div style="font-size:0.88rem;font-weight:700;color:#B8860B;margin-top:4px">Open these whenever. They're always true. 🌻</div>
+    </div>
+    <div class="unsaid-card">
+      <div class="unsaid-label">🌻 For when you had a bad day</div>
+      <div class="unsaid-body">Nikku I don't know exactly what you're feeling right now but I know it's heavy and I know you're sitting with it quietly the way you do and I just needed you to have this.
+
+I'm not going to talk about the day. The day is over and it doesn't deserve any more of your energy.
+
+I just want you to know that when I think about you, and I mean really think about you, I don't think about the days that went right. I think about the way you carry yourself through everything. The quiet strength you have that you probably don't even see in yourself. The way you feel things so deeply and still keep going. That's not a small thing. That's actually everything.
+
+You walked into my life and made it warmer without even trying. And on your worst days you are still the person I'd choose every single time without a second thought.
+
+I wish I could be there right now. Not to say anything, just to sit next to you and let you feel like the world isn't so heavy when someone who loves you is close. I'd give anything for that today.
+
+But since I can't, I need you to feel this through the screen somehow. That you are so deeply loved. Not for what you do or how you perform or how any day goes. Just for being you, exactly as you are, even on the days you feel like you weren't enough.
+
+You are always enough Nikku. To me you are always more than enough.
+
+Rest now. Let today go. Tomorrow is going to be kinder to you, I really believe that.
+
+And I'll be here through all of it, the good days and the hard ones, every single one. 🌻</div>
+    </div>
   </div>
   <div class="game-area" id="gameQs" style="padding:16px">
     <button class="game-back" onclick="hideGame('Qs')">← BACK</button>
@@ -843,7 +974,7 @@ body {
       <div class="qs-browse-list" id="qsBrowseList"></div>
     </div>
   </div>
-  <div class="game-area" id="gameReasons" style="padding:0">
+  <div class="game-area" id="gameReasons" style="padding:0;max-height:75vh;overflow-y:auto;">
     <div class="reasons-header">
       <button class="game-back" onclick="hideGame('Reasons')" style="margin:0 0 0 16px;padding-top:16px;display:block">← BACK</button>
       <div style="text-align:center;padding:12px 16px 16px">
@@ -1257,7 +1388,7 @@ renderEntries();
 // ═══ GAMES ═══
 function showGame(n){
   document.getElementById('gamesMenu').style.display = 'none';
-  ['Quiz','Truth','Catch','Compliment','Date','Reasons','Qs'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
+  ['Quiz','Truth','Catch','Compliment','Date','Reasons','Qs','Poems','Unsaid'].forEach(g => document.getElementById('game'+g).classList.remove('show'));
   document.getElementById('game'+n).classList.add('show');
   if(n === 'Quiz') initQuiz();
   if(n === 'Date') { wheelAngle = 0; drawWheel(0); }
